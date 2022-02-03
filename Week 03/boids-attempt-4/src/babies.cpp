@@ -9,13 +9,6 @@
 
 Babies::Babies()
 {
-//    setAvoidanceWeight(0.6f);
-//    setSeparationWeight(1.0f);
-//    setCohesionWeight(0.2f);
-//    setAlignmentWeight(0.1f);
-//    setAvoidanceThreshold(25);
-//    setSeparationThreshold(15);
-//    setNeighbourhoodSize(100);
     
     ofVec3f inPos = ofVec3f(ofRandom(800, 900), ofRandom(600,700));
     ofVec3f inVel = ofVec3f(ofRandom(-2, 2), ofRandom(-2, 2));
@@ -24,6 +17,7 @@ Babies::Babies()
     setVelocity(inVel);
 }
 
+//here we redefine what the draw function should do for the child Babies class
 void Babies::draw()
 {
     ofSetColor(255,0,0);
