@@ -72,6 +72,8 @@ public:
 	
 	void walls(ofVec3f &min, ofVec3f &max);
 	
+    //making void draw() a virtual function in our base class Boid will allow our derived class Babies
+    //to redefine what this function does, while we can still use a Boid* pointer
 	virtual void draw();
 };
 

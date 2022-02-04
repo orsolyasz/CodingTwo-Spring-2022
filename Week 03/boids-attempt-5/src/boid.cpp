@@ -12,15 +12,15 @@
 
 Boid::Boid()
 {
-	avoidanceWeight = 0.9f;
-    opposingWeight = 1.2f;
+	avoidanceWeight = 0.1f;
+    opposingWeight = 2.2f;
     
     separationWeight = 1.0f;
 	cohesionWeight = 0.2f;
 	alignmentWeight = 0.1f;
 	
-    avoidanceThreshold =50;
-    opposingThreshold = 200;
+    avoidanceThreshold =20;
+    opposingThreshold = 170;
     
 	separationThreshold = 15;
 	neighbourhoodSize = 100;
@@ -261,7 +261,7 @@ ofVec3f Boid::opposition(std::vector<Boid *> &otherGroupBoids)
 
 void Boid::update(std::vector<Boid *> &otherBoids, std::vector<Boid *> &otherGroupBoids, ofVec3f &min, ofVec3f &max)
 {
-    //velocity += avoidanceWeight*0.3*avoidance(otherGroupBoids);
+    //velocity += avoidanceWeight*avoidance(otherGroupBoids);
     velocity += opposingWeight*opposition(otherGroupBoids);
 	velocity += separationWeight*separation(otherBoids);
 	velocity += cohesionWeight*cohesion(otherBoids);
@@ -305,26 +305,21 @@ void Boid::walls(ofVec3f &min, ofVec3f &max)
 void Boid::draw()
 {
 	ofSetColor(255, 100, 100);
-//	ofCircle(position.x, position.y, 5);
-//  ofCircle(getPosition().x, getPosition().y, 5);
-    
+  
     ofVec3f plusSpeed=velocity;
     
+    //this bit I got from SimonS98's code to flip the triangle directions a bit
+    //https://github.com/SimonS98/Open_Framework_lab/blob/main/Boids_Lab/Boids_2_2/src/boid.cpp
     if(velocity.x>0||velocity.y>0)
         {
             plusSpeed.x = velocity.x;
         }
-        else if(velocity.x<0||velocity.y<0)
+    else if(velocity.x<0||velocity.y<0)
         {
             plusSpeed.x = velocity.x*2.5;
             plusSpeed.y = velocity.y*2.5;
-
         }
-        ofTriangle(position.x+plusSpeed.x*2.2,position.y+plusSpeed.y*2.2,position.x+cos(60.0)*15,position.y+sin(60.0)*15,position.x+sin(60.0)*15,position.y+cos(60.0)*15);
+    ofTriangle(position.x+plusSpeed.x*2.2,position.y+plusSpeed.y*2.2,position.x+cos(60.0)*15,position.y+sin(60.0)*15,position.x+sin(60.0)*15,position.y+cos(60.0)*15);
         
-    
-    
-    
-//    ofTriangle(position.x, position.y, position.x+20*cos(120), position.y+20*sin(120), position.x+20*sin(120), position.y+20*cos(120));
 
 }

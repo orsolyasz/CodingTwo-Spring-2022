@@ -16,6 +16,7 @@ Babies::Babies()
     setVelocity(inVel);
 }
 
+//here we redefine what the draw function should do for the child Babies class
 void Babies::draw()
 {
     ofSetColor(240,150,0);
